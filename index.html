@@ -5,20 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NiCHE — Recruitment 2026</title>
-  <meta name="description" content="NiCHE — The Marketing Club of IMNU. Home of BrandWizer and Ranbhoomi. Recruitment 2026 is coming.">
+  <meta name="description" content="NiCHE — The Marketing Club of IMNU. Home of BrandWizer and Rannbhoomi. Recruitment 2026 is coming.">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://imanmaity.github.io/NiCHE-Recruitment/">
   <meta property="og:site_name" content="NiCHE">
   <meta property="og:title" content="NiCHE — Recruitment 2026">
-  <meta property="og:description" content="The Marketing Club of IMNU. Home of BrandWizer & Ranbhoomi. Applications for 2026 are coming — where ideas become brands.">
+  <meta property="og:description" content="The Marketing Club of IMNU. Home of BrandWizer & Rannbhoomi. Applications for 2026 are coming — where ideas become brands.">
   <meta property="og:image" content="https://imanmaity.github.io/NiCHE-Recruitment/recap-banner.jpg">
   <meta property="og:image:width" content="2000">
   <meta property="og:image:height" content="833">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="NiCHE — Recruitment 2026">
-  <meta name="twitter:description" content="The Marketing Club of IMNU. Home of BrandWizer & Ranbhoomi. Applications for 2026 are coming.">
+  <meta name="twitter:description" content="The Marketing Club of IMNU. Home of BrandWizer & Rannbhoomi. Applications for 2026 are coming.">
   <meta name="twitter:image" content="https://imanmaity.github.io/NiCHE-Recruitment/recap-banner.jpg">
   <style>
     :root{
@@ -143,6 +143,14 @@
     .domain h3{font-size:17px;font-weight:700;display:flex;align-items:center;gap:9px;color:var(--accent)}
     .domain h3::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
     .domain p{color:var(--muted);font-size:14px;margin-top:8px}
+    .domain.flip{background:none;border:none;padding:0;perspective:1000px;will-change:auto}
+    .domain.flip:hover{border-color:transparent}
+    .domain.flip::before{content:none}
+    .domain-in{position:relative;height:100%;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1)}
+    .domain.flip:hover .domain-in,.domain.flip.flipped .domain-in{transform:rotateY(180deg)}
+    .domain .face{position:relative;height:100%;border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--panel);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+    .domain .face.back{position:absolute;inset:0;transform:rotateY(180deg);border-color:rgba(249,237,78,.35);display:flex;flex-direction:column;justify-content:center;box-shadow:0 0 34px rgba(249,237,78,.07)}
+    .domain .back-line{color:var(--accent);font-weight:700;font-size:15px;line-height:1.45}
     .join .pill{margin-top:44px}
 
     footer{border-top:1px solid var(--line);padding:48px 0 40px;text-align:center}
@@ -161,7 +169,7 @@
       *{animation:none!important}html{scroll-behavior:auto}
       .reveal{opacity:1;transform:none;transition:none}
       .page-bg{background-image:none}.masthead-img{animation:none}
-      .tm-track{animation:none}.tm-marquee{overflow-x:auto}
+      .tm-track{animation:none}.tm-marquee{overflow-x:auto}.domain-in{transition:none}
     }
   </style>
 </head>
@@ -217,22 +225,23 @@
     <div class="wrap">
       <div class="events">
         <div class="reveal">
-          <article class="event tilt">
-            <div class="kicker"><span class="name">BrandWizer</span></div>
+          <article class="event ev-depth">
+            <div class="kicker" data-d="22"><span class="name">BrandWizer</span></div>
             <p class="meta">2 days &middot; solo or teams of 5</p>
-            <p class="lead">The Themed Brand Battle.</p>
+            <p class="lead" data-d="14">The Themed Brand Battle.</p>
             <p class="body">Every edition starts with a blank canvas. A new theme. A new world. And two days designed to make you think like a marketer, not a participant.</p>
             <p class="body">Expect quizzes, puzzles, creative challenges, case rounds and presentations&mdash;but with a NiCHE twist. Because around here, marketing isn't about remembering brands. It's about understanding why they're remembered.</p>
-            <div class="tags"><span class="tag">Quizzes</span><span class="tag">Puzzles</span><span class="tag">Case rounds</span><span class="tag">Presentations</span><span class="tag">Consumer insight</span></div>
+            <div class="tags" data-d="8"><span class="tag">Quizzes</span><span class="tag">Puzzles</span><span class="tag">Case rounds</span><span class="tag">Presentations</span><span class="tag">Consumer insight</span></div>
           </article>
         </div>
         <div class="reveal">
-          <article class="event flagship tilt">
-            <div class="kicker"><span class="flag">Flagship</span><span class="name">Ranbhoomi</span></div>
+          <article class="event flagship ev-depth">
+            <div class="kicker" data-d="22"><span class="flag">Flagship</span><span class="name">Rannbhoomi</span></div>
             <p class="meta">3 days &middot; sectional war &middot; whole institute</p>
-            <p class="lead">The whole institute picks a side.</p>
-            <p class="body">Every section fights as one team &mdash; juniors and seniors together &mdash; across three days, a new round each day. Outdoor arenas, packed auditoriums, unconventional challenges, and marketing applied under real pressure. It's the one everyone waits for all year.</p>
-            <div class="tags"><span class="tag">Section spirit</span><span class="tag">A new round daily</span><span class="tag">Outdoor + indoor</span><span class="tag">Large-scale</span><span class="tag">Championship</span></div>
+            <p class="lead" data-d="14">Section pride takes over.</p>
+            <p class="body">For three days, every MBA section becomes one team. Juniors and seniors compete side by side through immersive marketing challenges that demand strategy, creativity and teamwork at every turn.</p>
+            <p class="body">From outdoor arenas to packed auditoriums, every round is built the NiCHE way &mdash; unconventional, competitive and impossible to forget. By the end, only one section takes home the title.</p>
+            <div class="tags" data-d="8"><span class="tag">Section spirit</span><span class="tag">A new round daily</span><span class="tag">Outdoor + indoor</span><span class="tag">Large-scale</span><span class="tag">Championship</span></div>
           </article>
         </div>
       </div>
@@ -257,10 +266,22 @@
       <h2>You won't just attend these.<br>You'll build them.</h2>
       <p class="kick">We recruit across four domains. Pick where you fit &mdash; or where you want to find out.</p>
       <div class="domains">
-        <div class="domain tilt"><h3>Ideation &amp; Content</h3><p>The concepts, scripts and words behind every round and every post.</p></div>
-        <div class="domain tilt"><h3>Graphics</h3><p>2D, 3D and social &mdash; the visual identity people actually remember.</p></div>
-        <div class="domain tilt"><h3>D&eacute;cor</h3><p>Turning plain venues into the theme, hands-on, on the ground.</p></div>
-        <div class="domain tilt"><h3>Logistics &amp; Sponsorship</h3><p>Partnerships, budgets and the admin that makes it all actually run.</p></div>
+        <div class="domain flip"><div class="domain-in">
+          <div class="face front"><h3>Ideation &amp; Content</h3><p>The concepts, scripts and words behind every round and every post.</p></div>
+          <div class="face back"><div class="back-line">You'll name the events, write the scripts, and own the words people quote back.</div></div>
+        </div></div>
+        <div class="domain flip"><div class="domain-in">
+          <div class="face front"><h3>Graphics</h3><p>2D, 3D and social &mdash; the visual identity people actually remember.</p></div>
+          <div class="face back"><div class="back-line">You'll design the posters, reels and 3D the whole campus screenshots.</div></div>
+        </div></div>
+        <div class="domain flip"><div class="domain-in">
+          <div class="face front"><h3>Decor</h3><p>Turning plain venues into the theme, hands-on, on the ground.</p></div>
+          <div class="face back"><div class="back-line">You'll turn empty halls into the world, with your hands, on the day.</div></div>
+        </div></div>
+        <div class="domain flip"><div class="domain-in">
+          <div class="face front"><h3>Logistics &amp; Sponsorship</h3><p>Partnerships, budgets and the admin that makes it all actually run.</p></div>
+          <div class="face back"><div class="back-line">You'll close the sponsors, hold the budget, and make it all run on time.</div></div>
+        </div></div>
       </div>
       <span class="pill run"><span class="dot"></span> Applicant portal &middot; coming soon</span>
     </div>
@@ -332,24 +353,33 @@
       items.forEach(function(el){io.observe(el)});
     }
 
-    /* smooth tilt + glare */
+    /* event cards: depth parallax + glare */
     if(!reduce && canHover){
-      document.querySelectorAll('.tilt').forEach(function(card){
-        var MAX=8,tX=0,tY=0,cX=0,cY=0,tS=1,cS=1,raf=null;
+      document.querySelectorAll('.ev-depth').forEach(function(card){
+        var layers=[].slice.call(card.querySelectorAll('[data-d]'));
+        var tx=0,ty=0,cx=0,cy=0,raf=null;
         function tick(){
-          cX+=(tX-cX)*0.15;cY+=(tY-cY)*0.15;cS+=(tS-cS)*0.15;
-          card.style.transform='perspective(800px) rotateX('+(-cY).toFixed(2)+'deg) rotateY('+cX.toFixed(2)+'deg) scale('+cS.toFixed(3)+')';
-          if(Math.abs(tX-cX)<0.02&&Math.abs(tY-cY)<0.02&&Math.abs(tS-cS)<0.002&&tS===1){card.style.transform='';card.style.willChange='';raf=null;}
+          cx+=(tx-cx)*0.13; cy+=(ty-cy)*0.13;
+          card.style.transform='perspective(1000px) rotateX('+(-cy*4).toFixed(2)+'deg) rotateY('+(cx*4).toFixed(2)+'deg)';
+          layers.forEach(function(l){ var d=+l.dataset.d; l.style.transform='translate('+(cx*d).toFixed(1)+'px,'+(cy*d).toFixed(1)+'px)'; });
+          if(Math.abs(tx-cx)<0.001 && Math.abs(ty-cy)<0.001){ card.style.transform=''; layers.forEach(function(l){l.style.transform='';}); card.style.willChange=''; raf=null; }
           else raf=requestAnimationFrame(tick);
         }
-        function start(){if(raf===null){card.style.willChange='transform';raf=requestAnimationFrame(tick);}}
+        function start(){ if(raf===null){ card.style.willChange='transform'; raf=requestAnimationFrame(tick); } }
         card.addEventListener('mousemove',function(e){
-          var r=card.getBoundingClientRect(),px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;
-          tX=(px-0.5)*MAX;tY=(py-0.5)*MAX;tS=1.02;
-          card.style.setProperty('--mx',(px*100).toFixed(1)+'%');card.style.setProperty('--my',(py*100).toFixed(1)+'%');
+          var r=card.getBoundingClientRect(), px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
+          tx=px-0.5; ty=py-0.5;
+          card.style.setProperty('--mx',(px*100).toFixed(1)+'%'); card.style.setProperty('--my',(py*100).toFixed(1)+'%');
           start();
         });
-        card.addEventListener('mouseleave',function(){tX=0;tY=0;tS=1;start();});
+        card.addEventListener('mouseleave',function(){ tx=0;ty=0; start(); });
+      });
+    }
+
+    /* domain flip: tap to flip on touch (desktop uses hover) */
+    if(!canHover){
+      document.querySelectorAll('.domain.flip').forEach(function(d){
+        d.addEventListener('click',function(){ d.classList.toggle('flipped'); });
       });
     }
 
