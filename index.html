@@ -71,10 +71,11 @@
     .nav-links a:hover{color:var(--accent)}
     section[id]{scroll-margin-top:74px}
     @media (max-width:560px){.nav{gap:14px;padding:10px 16px}.nav-links{gap:14px}.nav-links a{font-size:10.5px;letter-spacing:1px}}
-    .ig-top{position:fixed;top:18px;right:20px;z-index:50;display:inline-flex;align-items:center;gap:8px;color:var(--ink);opacity:.92;text-shadow:0 1px 6px rgba(0,0,0,.7);transition:opacity .2s ease,color .2s ease}
-    .ig-top:hover{opacity:1;color:var(--accent)}
-    .ig-top svg{width:26px;height:26px;display:block;filter:drop-shadow(0 1px 4px rgba(0,0,0,.6))}
-    .ig-top .handle{font-size:13px;letter-spacing:.3px}
+    .social{position:fixed;top:18px;right:20px;z-index:50;display:flex;align-items:center;gap:15px}
+    .soc{display:inline-flex;align-items:center;gap:8px;color:var(--ink);opacity:.92;text-shadow:0 1px 6px rgba(0,0,0,.7);transition:opacity .2s ease,color .2s ease}
+    .soc:hover{opacity:1;color:var(--accent)}
+    .soc svg{width:26px;height:26px;display:block;filter:drop-shadow(0 1px 4px rgba(0,0,0,.6))}
+    .soc .handle{font-size:13px;letter-spacing:.3px}
 
     .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:8px;text-shadow:0 1px 10px rgba(0,0,0,.7)}
     .scrollcue span:last-child{animation:bob 1.8s ease-in-out infinite}
@@ -87,13 +88,13 @@
     .thesis-cta{margin-top:18px;font-size:clamp(15px,2.1vw,19px);font-weight:700;color:var(--ink);text-shadow:0 1px 14px rgba(0,0,0,.7)}
 
     .events{display:flex;flex-direction:column;gap:28px;margin-top:44px}
-    .event{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:clamp(24px,4vw,42px);transition:border-color .25s ease;will-change:transform}
+    .event{position:relative;overflow:hidden;background:var(--panel);border:1px solid rgba(255,255,255,calc(.08 + var(--act,0)*.30));border-radius:18px;padding:clamp(24px,4vw,42px);transition:border-color .25s ease;will-change:transform}
     .event:hover{border-color:var(--line-strong)}
     .event>*{position:relative;z-index:1}
-    .event::before,.domain::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:0;pointer-events:none;opacity:0;transition:opacity .3s ease;background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%), rgba(249,237,78,.14), transparent 55%)}
+    .event::before,.domain::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:0;pointer-events:none;opacity:var(--act,0);transition:opacity .3s ease;background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%), rgba(249,237,78,.14), transparent 55%)}
     .event:hover::before,.domain:hover::before{opacity:1}
     .event .kicker{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
-    .event .name{font-size:clamp(28px,5vw,46px);font-weight:800;letter-spacing:-.01em;color:var(--accent)}
+    .event .name{font-size:clamp(28px,5vw,46px);font-weight:800;letter-spacing:-.01em;color:var(--accent);text-shadow:0 0 calc(var(--act,0)*24px) rgba(249,237,78,calc(var(--act,0)*.55))}
     .event .meta{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:14px}
     .event .lead{font-size:clamp(18px,2.6vw,24px);font-weight:600;margin:0 0 14px}
     .event p.body{color:var(--muted);max-width:640px;font-size:16px}
@@ -101,8 +102,13 @@
     .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
     .tag{font-size:12px;letter-spacing:.4px;color:var(--muted);border:1px solid var(--line-strong);border-radius:999px;padding:6px 13px;cursor:default;transition:color .2s ease,background .2s ease,border-color .2s ease,transform .2s ease}
     .tag:hover{color:#0a0a0a;background:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
-    .event.flagship{border-color:rgba(249,237,78,.28);box-shadow:0 0 40px rgba(249,237,78,.06)}
+    .event.flagship{border-color:rgba(249,237,78,.28);box-shadow:0 0 40px rgba(249,237,78,.06);animation:flagPulse 3.6s ease-in-out infinite}
     .event.flagship:hover{border-color:rgba(249,237,78,.5)}
+    @keyframes flagPulse{0%,100%{box-shadow:0 0 40px rgba(249,237,78,.06)}50%{box-shadow:0 0 58px rgba(249,237,78,.14)}}
+    .rip{position:absolute;border-radius:50%;background:rgba(249,237,78,.22);transform:scale(0);pointer-events:none;z-index:5;animation:rip .6s ease-out forwards}
+    @keyframes rip{to{transform:scale(1.7);opacity:0}}
+    .tag:active{transform:scale(.93)}.pill:active{transform:scale(.95)}
+    .tm-marquee.tpause .tm-track{animation-play-state:paused}
     .flag{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:#0a0a0a;background:var(--accent);border-radius:999px;padding:4px 11px}
 
     /* ---------- MEET THE TEAM (marquee) ---------- */
@@ -148,13 +154,14 @@
     .domain.flip::before{content:none}
     .domain-in{position:relative;height:100%;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1)}
     .domain.flip:hover .domain-in,.domain.flip.flipped .domain-in{transform:rotateY(180deg)}
-    .domain .face{position:relative;height:100%;border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--panel);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+    .domain .face{position:relative;height:100%;border:1px solid rgba(255,255,255,calc(.08 + var(--act,0)*.30));border-radius:14px;padding:22px;background:var(--panel);backface-visibility:hidden;-webkit-backface-visibility:hidden}
     .domain .face.back{position:absolute;inset:0;transform:rotateY(180deg);border-color:rgba(249,237,78,.35);display:flex;flex-direction:column;justify-content:center;box-shadow:0 0 34px rgba(249,237,78,.07)}
     .domain .back-line{color:var(--accent);font-weight:700;font-size:15px;line-height:1.45}
     .join .pill{margin-top:44px}
 
     footer{border-top:1px solid var(--line);padding:48px 0 40px;text-align:center}
     footer .flogo{width:150px;height:auto;opacity:.9;margin-bottom:20px}
+    .foot-social{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
     .ig-foot{display:inline-flex;align-items:center;gap:9px;color:var(--muted);font-size:14px;border:1px solid var(--line-strong);border-radius:999px;padding:9px 16px;transition:border-color .2s ease,color .2s ease;background:rgba(10,10,10,.4)}
     .ig-foot:hover{color:var(--accent);border-color:rgba(249,237,78,.4)}
     .ig-foot svg{width:18px;height:18px}
@@ -164,7 +171,7 @@
     .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
     .reveal.in{opacity:1;transform:none}
     :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-    @media (max-width:640px){.band{padding:72px 0}.domains{grid-template-columns:1fr}.ig-top .handle{display:none}}
+    @media (max-width:640px){.band{padding:72px 0}.domains{grid-template-columns:1fr}.soc .handle{display:none}}
     @media (prefers-reduced-motion:reduce){
       *{animation:none!important}html{scroll-behavior:auto}
       .reveal{opacity:1;transform:none;transition:none}
@@ -188,14 +195,19 @@
   <div class="page-bg"></div>
   <div class="page-tint"></div>
 
-  <a class="ig-top" href="https://www.instagram.com/niche_imnu" target="_blank" rel="noopener" aria-label="NiCHE on Instagram">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect x="2" y="2" width="20" height="20" rx="5.5" stroke="currentColor" stroke-width="1.8"/>
-      <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
-      <circle cx="17.4" cy="6.6" r="1.25" fill="currentColor"/>
-    </svg>
-    <span class="handle">@niche_imnu</span>
-  </a>
+  <div class="social">
+    <a class="soc" href="https://www.instagram.com/niche_imnu" target="_blank" rel="noopener" aria-label="NiCHE on Instagram">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5.5" stroke="currentColor" stroke-width="1.8"/>
+        <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
+        <circle cx="17.4" cy="6.6" r="1.25" fill="currentColor"/>
+      </svg>
+      <span class="handle">@niche_imnu</span>
+    </a>
+    <a class="soc" href="https://www.linkedin.com/company/niche-the-marketing-club-imnu/posts/?feedView=all" target="_blank" rel="noopener" aria-label="NiCHE on LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM3 9h4v12H3zM9 9h3.8v1.64h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-4.9c0-1.17-.02-2.68-1.9-2.68-1.9 0-2.2 1.28-2.2 2.6V21H9z"/></svg>
+    </a>
+  </div>
 
   <header class="masthead" id="top">
     <img class="masthead-img" src="recap-banner.jpg" alt="NiCHE '25-26: The Recap — the NiCHE team">
@@ -289,7 +301,7 @@
 
   <footer>
     <img class="flogo" src="Niche_logo_png_white.png" alt="NiCHE">
-    <div>
+    <div class="foot-social">
       <a class="ig-foot" href="https://www.instagram.com/niche_imnu" target="_blank" rel="noopener" aria-label="NiCHE on Instagram">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect x="2" y="2" width="20" height="20" rx="5.5" stroke="currentColor" stroke-width="1.8"/>
@@ -297,6 +309,10 @@
           <circle cx="17.4" cy="6.6" r="1.25" fill="currentColor"/>
         </svg>
         @niche_imnu
+      </a>
+      <a class="ig-foot" href="https://www.linkedin.com/company/niche-the-marketing-club-imnu/posts/?feedView=all" target="_blank" rel="noopener" aria-label="NiCHE on LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM3 9h4v12H3zM9 9h3.8v1.64h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-4.9c0-1.17-.02-2.68-1.9-2.68-1.9 0-2.2 1.28-2.2 2.6V21H9z"/></svg>
+        LinkedIn
       </a>
     </div>
     <p class="copy"><span class="mark">NiCHE</span> &middot; The Marketing Club of IMNU &middot; Recruitment 2026</p>
@@ -423,6 +439,53 @@
     var nav=document.getElementById('nav'),nk=false;
     function navUpd(){ if(nav){ nav.classList.toggle('show', scrollY > innerHeight*0.6); } nk=false; }
     addEventListener('scroll',function(){ if(!nk){requestAnimationFrame(navUpd);nk=true;} },{passive:true}); navUpd();
+
+    /* ---------- MOBILE LIVELINESS (touch devices) ---------- */
+    if(!reduce && !canHover){
+      // scroll-activation: cards illuminate as they reach the viewport centre
+      var actCards=[].slice.call(document.querySelectorAll('.event, .domain'));
+      var ak=false;
+      function actUpd(){
+        var vh=innerHeight, mid=vh/2;
+        actCards.forEach(function(c){
+          var r=c.getBoundingClientRect(), cc=r.top+r.height/2;
+          var t=Math.max(0,1-Math.abs(cc-mid)/(vh*0.62));
+          c.style.setProperty('--act',t.toFixed(3));
+          if(c.classList.contains('event')){
+            var off=(cc-mid)/vh;
+            c.style.transform='perspective(1100px) rotateX('+(off*-4).toFixed(2)+'deg) scale('+(1+t*0.022).toFixed(3)+')';
+          }
+        });
+        ak=false;
+      }
+      addEventListener('scroll',function(){if(!ak){requestAnimationFrame(actUpd);ak=true;}},{passive:true});
+      addEventListener('resize',actUpd); setTimeout(actUpd,60);
+
+      // ambient: the wordmark spotlight auto-orbits when there is no cursor
+      if(mark){ var oa=0;
+        (function orbit(){ oa+=0.015; var r=mark.getBoundingClientRect();
+          mark.style.setProperty('--x',(r.width*(0.5+0.30*Math.cos(oa))).toFixed(0)+'px');
+          mark.style.setProperty('--y',(r.height*(0.5+0.40*Math.sin(oa*1.3))).toFixed(0)+'px');
+          requestAnimationFrame(orbit); })();
+      }
+    }
+
+    // tap ripple on event cards (all devices)
+    document.querySelectorAll('.event').forEach(function(c){
+      c.addEventListener('pointerdown',function(e){
+        var r=c.getBoundingClientRect(), d=Math.max(r.width,r.height), sp=document.createElement('span');
+        sp.className='rip'; sp.style.width=sp.style.height=d+'px';
+        sp.style.left=(e.clientX-r.left-d/2)+'px'; sp.style.top=(e.clientY-r.top-d/2)+'px';
+        c.appendChild(sp); setTimeout(function(){sp.remove();},600);
+      });
+    });
+
+    // team marquee: pause on touch so the LinkedIn cutouts are tappable
+    var mq=document.querySelector('.tm-marquee'), mqt=null;
+    if(mq){
+      mq.addEventListener('touchstart',function(){ mq.classList.add('tpause'); clearTimeout(mqt); },{passive:true});
+      mq.addEventListener('touchend',function(){ clearTimeout(mqt); mqt=setTimeout(function(){mq.classList.remove('tpause');},1800); },{passive:true});
+    }
   })();
   </script>
 </body>
