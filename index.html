@@ -8,82 +8,63 @@
   <meta name="description" content="NiCHE — The Marketing Club of IMNU. Home of BrandWizer and Ranbhoomi. Recruitment 2026 is coming.">
   <style>
     :root{
-      --bg:#0a0a0a;
-      --panel:#111114;
-      --ink:#f4f4f5;
-      --muted:#a1a1aa;
-      --faint:#6b6b72;
-      --accent:#f9ed4e;
-      --line:rgba(255,255,255,0.08);
-      --line-strong:rgba(255,255,255,0.16);
+      --bg:#0a0a0a;--panel:#111114;--ink:#f4f4f5;--muted:#a1a1aa;--faint:#6b6b72;
+      --accent:#f9ed4e;--line:rgba(255,255,255,0.08);--line-strong:rgba(255,255,255,0.16);
       --glow:rgba(249,237,78,0.35);
+      --tint:rgba(10,10,10,0.55);   /* GIF darkness: higher = lower-key */
     }
     *{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-      background:var(--bg);color:var(--ink);line-height:1.6;
-      -webkit-font-smoothing:antialiased;
-    }
+    html{scroll-behavior:smooth;background:var(--bg)}
+    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:transparent;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
     .wrap{width:100%;max-width:1040px;margin:0 auto;padding:0 24px}
     .eyebrow{font-size:12px;letter-spacing:3.5px;text-transform:uppercase;color:var(--faint);font-weight:600}
     a{color:inherit;text-decoration:none}
 
+    /* live GIF background */
+    .page-bg{position:fixed;inset:0;z-index:-2;background:#0a0a0a url('NiCHE_GIF.gif') center/cover no-repeat;filter:brightness(1.08) contrast(1.03)}
+    .page-tint{position:fixed;inset:0;z-index:-1;background:var(--tint)}
+
+    /* ---------- MASTHEAD (team banner header) ---------- */
+    .masthead{width:100%;overflow:hidden;line-height:0;position:relative;background:#0a0a0a}
+    .masthead-img{width:100%;height:auto;display:block;transform:scale(1.001);transition:transform .6s ease;animation:mastIn 1s ease both}
+    .masthead:hover .masthead-img{transform:scale(1.035)}
+    @keyframes mastIn{from{opacity:0;transform:scale(1.06)}to{opacity:1;transform:scale(1.001)}}
+
     /* ---------- HERO ---------- */
-    .hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:24px;position:relative;overflow:hidden}
-    .hero-bg{
-      position:absolute;inset:0;z-index:0;
-      background:#050505 url('NiCHE_GIF.gif') center/cover no-repeat;
-    }
-    .hero-veil{
-      position:absolute;inset:0;z-index:1;
-      background:
-        radial-gradient(60% 60% at 50% 45%, rgba(10,10,10,.30), rgba(10,10,10,.72)),
-        linear-gradient(180deg, rgba(10,10,10,.45), rgba(10,10,10,.35) 40%, rgba(10,10,10,.85));
-    }
+    .hero{min-height:88vh;display:grid;place-items:center;text-align:center;padding:24px;position:relative}
     .hero-inner{position:relative;z-index:2}
-    .logo{width:min(560px,84vw);height:auto;filter:drop-shadow(0 0 40px rgba(249,237,78,.18))}
-    .hero .sub{color:var(--muted);font-size:clamp(15px,2.4vw,19px);max-width:440px;margin:22px auto 0}
-
-    .pill{
-      margin-top:28px;display:inline-flex;align-items:center;gap:10px;
-      padding:10px 20px;border:1px solid var(--accent);border-radius:999px;
-      font-size:14px;color:var(--accent);animation:pillGlow 2.4s ease-in-out infinite;
+    .wordmark{
+      font-size:clamp(56px,13vw,132px);font-weight:800;line-height:.95;letter-spacing:-.02em;
+      color:var(--accent);text-shadow:0 0 34px var(--glow);
+      filter:url(#liquid);cursor:crosshair;
     }
+    .hero .sub{color:var(--ink);font-size:clamp(15px,2.4vw,19px);max-width:440px;margin:20px auto 0;text-shadow:0 1px 14px rgba(0,0,0,.7)}
+
+    .pill{margin-top:28px;display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border:1px solid var(--accent);border-radius:999px;font-size:14px;color:var(--accent);background:rgba(10,10,10,.35);animation:pillGlow 2.4s ease-in-out infinite}
     .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:dotPulse 1.6s ease-in-out infinite}
-    @keyframes pillGlow{
-      0%,100%{box-shadow:0 0 10px rgba(249,237,78,.30),inset 0 0 6px rgba(249,237,78,.10)}
-      50%{box-shadow:0 0 22px rgba(249,237,78,.60),inset 0 0 10px rgba(249,237,78,.20)}
-    }
-    @keyframes dotPulse{
-      0%,100%{transform:scale(1);box-shadow:0 0 6px var(--accent),0 0 10px var(--accent)}
-      50%{transform:scale(1.35);box-shadow:0 0 12px var(--accent),0 0 22px var(--accent)}
-    }
+    @keyframes pillGlow{0%,100%{box-shadow:0 0 10px rgba(249,237,78,.30),inset 0 0 6px rgba(249,237,78,.10)}50%{box-shadow:0 0 22px rgba(249,237,78,.60),inset 0 0 10px rgba(249,237,78,.20)}}
+    @keyframes dotPulse{0%,100%{transform:scale(1);box-shadow:0 0 6px var(--accent),0 0 10px var(--accent)}50%{transform:scale(1.35);box-shadow:0 0 12px var(--accent),0 0 22px var(--accent)}}
 
-    /* Instagram — top right */
-    .ig-top{position:absolute;top:22px;right:24px;z-index:3;display:inline-flex;align-items:center;gap:8px;
-      color:var(--ink);opacity:.85;transition:opacity .2s ease,color .2s ease}
+    .ig-top{position:fixed;top:18px;right:20px;z-index:20;display:inline-flex;align-items:center;gap:8px;color:var(--ink);opacity:.92;text-shadow:0 1px 6px rgba(0,0,0,.7);transition:opacity .2s ease,color .2s ease}
     .ig-top:hover{opacity:1;color:var(--accent)}
-    .ig-top svg{width:26px;height:26px;display:block}
+    .ig-top svg{width:26px;height:26px;display:block;filter:drop-shadow(0 1px 4px rgba(0,0,0,.6))}
     .ig-top .handle{font-size:13px;letter-spacing:.3px}
 
-    .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;
-      font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);
-      display:flex;flex-direction:column;align-items:center;gap:8px}
+    .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:8px;text-shadow:0 1px 10px rgba(0,0,0,.7)}
     .scrollcue span:last-child{animation:bob 1.8s ease-in-out infinite}
     @keyframes bob{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(5px);opacity:1}}
 
     /* ---------- SECTIONS ---------- */
     .band{padding:100px 0;border-top:1px solid var(--line)}
-    .thesis h2{font-size:clamp(30px,6vw,60px);font-weight:800;letter-spacing:-.02em;line-height:1.05;margin-top:16px}
-    .thesis p{color:var(--muted);font-size:clamp(16px,2.2vw,19px);max-width:560px;margin-top:20px}
+    .thesis h2{font-size:clamp(30px,6vw,60px);font-weight:800;letter-spacing:-.02em;line-height:1.05;margin-top:16px;color:var(--accent);text-shadow:0 2px 22px rgba(0,0,0,.55)}
+    .thesis p{color:var(--ink);font-size:clamp(16px,2.2vw,19px);max-width:560px;margin-top:20px;text-shadow:0 1px 14px rgba(0,0,0,.7)}
 
     .events{display:flex;flex-direction:column;gap:28px;margin-top:44px}
-    .event{background:var(--panel);border:1px solid var(--line);border-radius:18px;
-      padding:clamp(24px,4vw,42px);transition:border-color .25s ease,transform .25s ease}
-    .event:hover{border-color:var(--line-strong);transform:translateY(-3px)}
+    .event{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:clamp(24px,4vw,42px);
+      transition:border-color .25s ease,transform .18s ease;transform-style:preserve-3d;will-change:transform}
+    .event:hover{border-color:var(--line-strong)}
     .event .kicker{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
-    .event .name{font-size:clamp(28px,5vw,46px);font-weight:800;letter-spacing:-.01em}
+    .event .name{font-size:clamp(28px,5vw,46px);font-weight:800;letter-spacing:-.01em;color:var(--accent)}
     .event .meta{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:14px}
     .event .lead{font-size:clamp(18px,2.6vw,24px);font-weight:600;margin:0 0 14px}
     .event p.body{color:var(--muted);max-width:640px;font-size:16px}
@@ -93,70 +74,78 @@
     .event.flagship:hover{border-color:rgba(249,237,78,.5)}
     .flag{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:#0a0a0a;background:var(--accent);border-radius:999px;padding:4px 11px}
 
-    /* ---------- JOIN ---------- */
-    .join h2{font-size:clamp(28px,5.5vw,52px);font-weight:800;letter-spacing:-.02em;line-height:1.05;margin-top:16px}
-    .join .kick{color:var(--muted);font-size:clamp(16px,2.2vw,19px);max-width:560px;margin-top:18px}
+    .join h2{font-size:clamp(28px,5.5vw,52px);font-weight:800;letter-spacing:-.02em;line-height:1.05;margin-top:16px;color:var(--accent);text-shadow:0 2px 22px rgba(0,0,0,.55)}
+    .join .kick{color:var(--ink);font-size:clamp(16px,2.2vw,19px);max-width:560px;margin-top:18px;text-shadow:0 1px 14px rgba(0,0,0,.7)}
     .domains{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px}
-    .domain{border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--panel);transition:border-color .25s ease}
+    .domain{border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--panel);
+      transition:border-color .25s ease,transform .18s ease;transform-style:preserve-3d;will-change:transform}
     .domain:hover{border-color:var(--line-strong)}
-    .domain h3{font-size:17px;font-weight:700;display:flex;align-items:center;gap:9px}
+    .domain h3{font-size:17px;font-weight:700;display:flex;align-items:center;gap:9px;color:var(--accent)}
     .domain h3::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
     .domain p{color:var(--muted);font-size:14px;margin-top:8px}
     .join .pill{margin-top:44px}
 
-    /* ---------- FOOTER ---------- */
     footer{border-top:1px solid var(--line);padding:48px 0 40px;text-align:center}
     footer .flogo{width:150px;height:auto;opacity:.9;margin-bottom:20px}
-    .ig-foot{display:inline-flex;align-items:center;gap:9px;color:var(--muted);font-size:14px;
-      border:1px solid var(--line-strong);border-radius:999px;padding:9px 16px;transition:border-color .2s ease,color .2s ease}
+    .ig-foot{display:inline-flex;align-items:center;gap:9px;color:var(--muted);font-size:14px;border:1px solid var(--line-strong);border-radius:999px;padding:9px 16px;transition:border-color .2s ease,color .2s ease;background:rgba(10,10,10,.4)}
     .ig-foot:hover{color:var(--accent);border-color:rgba(249,237,78,.4)}
     .ig-foot svg{width:18px;height:18px}
     footer .copy{margin-top:22px;font-size:13px;color:var(--faint);letter-spacing:.4px}
     footer .copy .mark{color:var(--accent);font-weight:700}
 
-    /* ---------- reveal + a11y ---------- */
     .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
     .reveal.in{opacity:1;transform:none}
     :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-    @media (max-width:640px){
-      .band{padding:72px 0}
-      .domains{grid-template-columns:1fr}
-      .ig-top .handle{display:none}
-    }
+    @media (max-width:640px){.band{padding:72px 0}.domains{grid-template-columns:1fr}.ig-top .handle{display:none}}
     @media (prefers-reduced-motion:reduce){
-      *{animation:none!important}
-      html{scroll-behavior:auto}
+      *{animation:none!important}html{scroll-behavior:auto}
       .reveal{opacity:1;transform:none;transition:none}
-      .hero-bg{background-image:none}      /* stop the GIF, keep dark bg */
+      .page-bg{background-image:none}
+      .wordmark{filter:none}
+      .masthead-img{animation:none}
     }
   </style>
 </head>
 <body>
 
+  <!-- live GIF background -->
+  <div class="page-bg"></div>
+  <div class="page-tint"></div>
+
+  <!-- liquid filter for the wordmark -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="liquid" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+      <feTurbulence id="turb" type="fractalNoise" baseFrequency="0.012 0.016" numOctaves="2" seed="2" result="n"/>
+      <feDisplacementMap id="disp" in="SourceGraphic" in2="n" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
+  <!-- Instagram -->
+  <a class="ig-top" href="https://www.instagram.com/niche_imnu" target="_blank" rel="noopener" aria-label="NiCHE on Instagram">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="5.5" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="17.4" cy="6.6" r="1.25" fill="currentColor"/>
+    </svg>
+    <span class="handle">@niche_imnu</span>
+  </a>
+
+  <!-- MASTHEAD: team banner -->
+  <header class="masthead">
+    <img class="masthead-img" src="recap-banner.jpg" alt="NiCHE '25-26: The Recap — the NiCHE team">
+  </header>
+
   <!-- HERO -->
-  <header class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-veil"></div>
-
-    <a class="ig-top" href="https://www.instagram.com/niche_imnu" target="_blank" rel="noopener" aria-label="NiCHE on Instagram">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect x="2" y="2" width="20" height="20" rx="5.5" stroke="currentColor" stroke-width="1.8"/>
-        <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
-        <circle cx="17.4" cy="6.6" r="1.25" fill="currentColor"/>
-      </svg>
-      <span class="handle">@niche_imnu</span>
-    </a>
-
+  <section class="hero">
     <div class="hero-inner">
-      <img class="logo" src="Niche_logo_png_white.png" alt="NiCHE — wings to your creativity">
+      <h1 class="wordmark">NiCHE</h1>
       <p class="sub">Recruitment 2026 — where ideas become brands.</p>
       <span class="pill"><span class="dot"></span> Applicant portal · coming soon</span>
     </div>
-
     <a class="scrollcue" href="#events" aria-label="Scroll to what we build">
       <span>What we build</span><span>&#8595;</span>
     </a>
-  </header>
+  </section>
 
   <!-- THESIS -->
   <section class="band">
@@ -171,27 +160,20 @@
   <section class="band" id="events" style="border-top:none;padding-top:0">
     <div class="wrap">
       <div class="events">
-
-        <article class="event reveal">
+        <article class="event tilt reveal">
           <div class="kicker"><span class="name">BrandWizer</span></div>
           <p class="meta">2 days &middot; solo or teams of 5</p>
           <p class="lead">The themed brand battle.</p>
           <p class="body">A fresh world every edition &mdash; themed venues, a custom event identity, and challenges built around it. Quizzes, puzzles, creative games, case rounds and presentations that test how well you actually read brands, ads, logos, taglines and the thinking behind them. Less textbook, more instinct.</p>
-          <div class="tags">
-            <span class="tag">Quizzes</span><span class="tag">Puzzles</span><span class="tag">Case rounds</span><span class="tag">Presentations</span><span class="tag">Consumer insight</span>
-          </div>
+          <div class="tags"><span class="tag">Quizzes</span><span class="tag">Puzzles</span><span class="tag">Case rounds</span><span class="tag">Presentations</span><span class="tag">Consumer insight</span></div>
         </article>
-
-        <article class="event flagship reveal">
+        <article class="event flagship tilt reveal">
           <div class="kicker"><span class="flag">Flagship</span><span class="name">Ranbhoomi</span></div>
           <p class="meta">3 days &middot; sectional war &middot; whole institute</p>
           <p class="lead">The whole institute picks a side.</p>
           <p class="body">Every section fights as one team &mdash; juniors and seniors together &mdash; across three days, a new round each day. Outdoor arenas, packed auditoriums, unconventional challenges, and marketing applied under real pressure. It's the one everyone waits for all year.</p>
-          <div class="tags">
-            <span class="tag">Section spirit</span><span class="tag">A new round daily</span><span class="tag">Outdoor + indoor</span><span class="tag">Large-scale</span><span class="tag">Championship</span>
-          </div>
+          <div class="tags"><span class="tag">Section spirit</span><span class="tag">A new round daily</span><span class="tag">Outdoor + indoor</span><span class="tag">Large-scale</span><span class="tag">Championship</span></div>
         </article>
-
       </div>
     </div>
   </section>
@@ -203,10 +185,10 @@
       <h2>You won't just attend these.<br>You'll build them.</h2>
       <p class="kick">We recruit across four domains. Pick where you fit &mdash; or where you want to find out.</p>
       <div class="domains">
-        <div class="domain"><h3>Ideation &amp; Content</h3><p>The concepts, scripts and words behind every round and every post.</p></div>
-        <div class="domain"><h3>Graphics</h3><p>2D, 3D and social &mdash; the visual identity people actually remember.</p></div>
-        <div class="domain"><h3>D&eacute;cor</h3><p>Turning plain venues into the theme, hands-on, on the ground.</p></div>
-        <div class="domain"><h3>Logistics &amp; Sponsorship</h3><p>Partnerships, budgets and the admin that makes it all actually run.</p></div>
+        <div class="domain tilt"><h3>Ideation &amp; Content</h3><p>The concepts, scripts and words behind every round and every post.</p></div>
+        <div class="domain tilt"><h3>Graphics</h3><p>2D, 3D and social &mdash; the visual identity people actually remember.</p></div>
+        <div class="domain tilt"><h3>D&eacute;cor</h3><p>Turning plain venues into the theme, hands-on, on the ground.</p></div>
+        <div class="domain tilt"><h3>Logistics &amp; Sponsorship</h3><p>Partnerships, budgets and the admin that makes it all actually run.</p></div>
       </div>
       <span class="pill"><span class="dot"></span> Applicant portal &middot; coming soon</span>
     </div>
@@ -228,17 +210,68 @@
   </footer>
 
   <script>
-    (function(){
-      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var items = document.querySelectorAll('.reveal');
-      if(reduce || !('IntersectionObserver' in window)){
-        items.forEach(function(el){el.classList.add('in')});return;
-      }
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)} });
+  (function(){
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var canHover = window.matchMedia('(hover: hover)').matches;
+
+    /* scroll reveal */
+    var items = document.querySelectorAll('.reveal');
+    if(reduce || !('IntersectionObserver' in window)){
+      items.forEach(function(el){el.classList.add('in')});
+    } else {
+      var io = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)} });
       },{threshold:0.15});
       items.forEach(function(el){io.observe(el)});
-    })();
+    }
+
+    /* 3D tilt on cards */
+    if(!reduce && canHover){
+      document.querySelectorAll('.tilt').forEach(function(card){
+        var MAX = 7;
+        card.addEventListener('mousemove', function(e){
+          var r = card.getBoundingClientRect();
+          var px = (e.clientX - r.left)/r.width - 0.5;   // -0.5..0.5
+          var py = (e.clientY - r.top)/r.height - 0.5;
+          card.style.transform =
+            'perspective(700px) rotateY('+(px*MAX)+'deg) rotateX('+(-py*MAX)+'deg) scale(1.015)';
+        });
+        card.addEventListener('mouseleave', function(){
+          card.style.transform = 'perspective(700px) rotateY(0) rotateX(0) scale(1)';
+        });
+      });
+    }
+
+    /* liquid wordmark */
+    if(!reduce){
+      var turb = document.getElementById('turb');
+      var disp = document.getElementById('disp');
+      var mark = document.querySelector('.wordmark');
+      if(turb && disp && mark){
+        var scale=1.5, target=1.5, seed=2, lastX=0, lastY=0, speed=0, near=0;
+        function move(e){
+          var p = ('touches' in e && e.touches[0]) ? e.touches[0] : e;
+          var r = mark.getBoundingClientRect();
+          var dx=p.clientX-lastX, dy=p.clientY-lastY;
+          speed=Math.min(1, Math.hypot(dx,dy)/45); lastX=p.clientX; lastY=p.clientY;
+          var nx=Math.max(r.left,Math.min(p.clientX,r.right));
+          var ny=Math.max(r.top,Math.min(p.clientY,r.bottom));
+          near=Math.max(0, 1 - Math.hypot(p.clientX-nx,p.clientY-ny)/140);
+          target = 1.5 + near*(11 + speed*10);
+        }
+        window.addEventListener('mousemove', move, {passive:true});
+        window.addEventListener('touchmove', move, {passive:true});
+        (function loop(){
+          scale += (target-scale)*0.12;
+          seed  += 0.02 + near*0.12 + speed*0.10;
+          speed *= 0.9; near *= 0.96;
+          disp.setAttribute('scale', scale.toFixed(2));
+          turb.setAttribute('seed', (seed%100).toFixed(2));
+          requestAnimationFrame(loop);
+        })();
+      }
+    }
+  })();
   </script>
 </body>
 </html>
