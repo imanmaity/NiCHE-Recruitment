@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a0a">
   <title>NiCHE — Recruitment 2026</title>
   <meta name="description" content="NiCHE — The Marketing Club of IMNU. Home of BrandWizer and Rannbhoomi. Recruitment 2026 is coming.">
   <link rel="icon" type="image/png" href="favicon.png">
@@ -22,7 +23,7 @@
   <meta name="twitter:image" content="https://imanmaity.github.io/NiCHE-Recruitment/recap-banner.jpg">
   <style>
     :root{
-      --bg:#0a0a0a;--panel:#111114;--ink:#f4f4f5;--muted:#a1a1aa;--faint:#6b6b72;
+      --bg:#0a0a0a;--panel:#111114;--ink:#f4f4f5;--muted:#a1a1aa;--faint:#8f8f98;
       --accent:#f9ed4e;--line:rgba(255,255,255,0.08);--line-strong:rgba(255,255,255,0.16);
       --glow:rgba(249,237,78,0.35);--tint:rgba(10,10,10,0.55);
     }
@@ -34,7 +35,7 @@
     a{color:inherit;text-decoration:none}
 
     .progress{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--accent);z-index:60;box-shadow:0 0 8px rgba(249,237,78,.55);will-change:transform}
-    .page-bg{position:fixed;inset:0;z-index:-2;background:#0a0a0a url('NiCHE_GIF.gif') center/cover no-repeat;filter:brightness(1.08) contrast(1.03)}
+    .page-bg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;background:#0a0a0a;filter:brightness(1.08) contrast(1.03);border:none}
     .page-tint{position:fixed;inset:0;z-index:-1;background:var(--tint)}
 
     .masthead{width:100%;overflow:hidden;line-height:0;position:relative;background:#0a0a0a}
@@ -146,8 +147,8 @@
     .domain{position:relative;border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--panel);transition:border-color .25s ease;will-change:transform}
     .domain:hover{border-color:var(--line-strong)}
     .domain>*{position:relative;z-index:1}
-    .domain h3{font-size:17px;font-weight:700;display:flex;align-items:center;gap:9px;color:var(--accent)}
-    .domain h3::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+    .domain h3{font-size:17px;font-weight:700;display:flex;align-items:center;gap:9px;color:var(--c,var(--accent))}
+    .domain h3::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c,var(--accent));flex:none}
     .domain p{color:var(--muted);font-size:14px;margin-top:8px}
     .domain.flip{background:none;border:none;padding:0;perspective:1000px;will-change:auto}
     .domain.flip:hover{border-color:transparent}
@@ -155,8 +156,8 @@
     .domain-in{position:relative;height:100%;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1)}
     .domain.flip:hover .domain-in,.domain.flip.flipped .domain-in{transform:rotateY(180deg)}
     .domain .face{position:relative;height:100%;border:1px solid rgba(255,255,255,calc(.08 + var(--act,0)*.30));border-radius:14px;padding:22px;background:var(--panel);backface-visibility:hidden;-webkit-backface-visibility:hidden}
-    .domain .face.back{position:absolute;inset:0;transform:rotateY(180deg);border-color:rgba(249,237,78,.35);display:flex;flex-direction:column;justify-content:center;box-shadow:0 0 34px rgba(249,237,78,.07)}
-    .domain .back-line{color:var(--accent);font-weight:700;font-size:15px;line-height:1.45}
+    .domain .face.back{position:absolute;inset:0;transform:rotateY(180deg);border-color:color-mix(in srgb,var(--c,var(--accent)) 42%,transparent);display:flex;flex-direction:column;justify-content:center;box-shadow:0 0 34px color-mix(in srgb,var(--c,var(--accent)) 12%,transparent)}
+    .domain .back-line{color:var(--c,var(--accent));font-weight:700;font-size:15px;line-height:1.45}
     .join .pill{margin-top:44px}
 
     footer{border-top:1px solid var(--line);padding:48px 0 40px;text-align:center}
@@ -175,7 +176,7 @@
     @media (prefers-reduced-motion:reduce){
       *{animation:none!important}html{scroll-behavior:auto}
       .reveal{opacity:1;transform:none;transition:none}
-      .page-bg{background-image:none}.masthead-img{animation:none}
+      .page-bg{display:none}.masthead-img{animation:none}
       .tm-track{animation:none}.tm-marquee{overflow-x:auto}.domain-in{transition:none}
     }
   </style>
@@ -192,7 +193,9 @@
       <a href="#join">Join</a>
     </div>
   </nav>
-  <div class="page-bg"></div>
+  <video class="page-bg" autoplay muted loop playsinline aria-hidden="true">
+    <source src="niche-bg.mp4" type="video/mp4">
+  </video>
   <div class="page-tint"></div>
 
   <div class="social">
@@ -238,7 +241,7 @@
       <div class="events">
         <div class="reveal">
           <article class="event ev-depth">
-            <div class="kicker" data-d="22"><span class="name">BrandWizer</span></div>
+            <div class="kicker" data-d="22"><h2 class="name">BrandWizer</h2></div>
             <p class="meta">2 days &middot; solo or teams of 5</p>
             <p class="lead" data-d="14">The Themed Brand Battle.</p>
             <p class="body">Every edition starts with a blank canvas. A new theme. A new world. And two days designed to make you think like a marketer, not a participant.</p>
@@ -248,7 +251,7 @@
         </div>
         <div class="reveal">
           <article class="event flagship ev-depth">
-            <div class="kicker" data-d="22"><span class="flag">Flagship</span><span class="name">Rannbhoomi</span></div>
+            <div class="kicker" data-d="22"><span class="flag">Flagship</span><h2 class="name">Rannbhoomi</h2></div>
             <p class="meta">3 days &middot; sectional war &middot; whole institute</p>
             <p class="lead" data-d="14">Section pride takes over.</p>
             <p class="body">For three days, every MBA section becomes one team. Juniors and seniors compete side by side through immersive marketing challenges that demand strategy, creativity and teamwork at every turn.</p>
@@ -278,19 +281,19 @@
       <h2>You won't just attend these.<br>You'll build them.</h2>
       <p class="kick">We recruit across four domains. Pick where you fit &mdash; or where you want to find out.</p>
       <div class="domains">
-        <div class="domain flip"><div class="domain-in">
+        <div class="domain flip" style="--c:#f9ed4e"><div class="domain-in">
           <div class="face front"><h3>Ideation &amp; Content</h3><p>The concepts, scripts and words behind every round and every post.</p></div>
           <div class="face back"><div class="back-line">You'll name the events, write the scripts, and own the words people quote back.</div></div>
         </div></div>
-        <div class="domain flip"><div class="domain-in">
+        <div class="domain flip" style="--c:#a78bfa"><div class="domain-in">
           <div class="face front"><h3>Graphics</h3><p>2D, 3D and social &mdash; the visual identity people actually remember.</p></div>
           <div class="face back"><div class="back-line">You'll design the posters, reels and 3D the whole campus screenshots.</div></div>
         </div></div>
-        <div class="domain flip"><div class="domain-in">
+        <div class="domain flip" style="--c:#f472b6"><div class="domain-in">
           <div class="face front"><h3>Decor</h3><p>Turning plain venues into the theme, hands-on, on the ground.</p></div>
           <div class="face back"><div class="back-line">You'll turn empty halls into the world, with your hands, on the day.</div></div>
         </div></div>
-        <div class="domain flip"><div class="domain-in">
+        <div class="domain flip" style="--c:#4ade80"><div class="domain-in">
           <div class="face front"><h3>Logistics &amp; Sponsorship</h3><p>Partnerships, budgets and the admin that makes it all actually run.</p></div>
           <div class="face back"><div class="back-line">You'll close the sponsors, hold the budget, and make it all run on time.</div></div>
         </div></div>
