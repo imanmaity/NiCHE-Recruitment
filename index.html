@@ -19,24 +19,27 @@
     .eyebrow{font-size:12px;letter-spacing:3.5px;text-transform:uppercase;color:var(--faint);font-weight:600}
     a{color:inherit;text-decoration:none}
 
-    /* scroll progress bar */
-    .progress{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;
-      background:var(--accent);z-index:60;box-shadow:0 0 8px rgba(249,237,78,.55);will-change:transform}
-
-    /* live GIF background */
+    .progress{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--accent);z-index:60;box-shadow:0 0 8px rgba(249,237,78,.55);will-change:transform}
     .page-bg{position:fixed;inset:0;z-index:-2;background:#0a0a0a url('NiCHE_GIF.gif') center/cover no-repeat;filter:brightness(1.08) contrast(1.03)}
     .page-tint{position:fixed;inset:0;z-index:-1;background:var(--tint)}
 
-    /* masthead */
     .masthead{width:100%;overflow:hidden;line-height:0;position:relative;background:#0a0a0a}
     .masthead-img{width:100%;height:auto;display:block;transition:transform .6s ease;animation:mastIn 1s ease both}
     .masthead:hover .masthead-img{transform:scale(1.035)}
     @keyframes mastIn{from{opacity:0;transform:scale(1.06)}to{opacity:1;transform:scale(1)}}
 
-    /* hero */
     .hero{min-height:88vh;display:grid;place-items:center;text-align:center;padding:24px;position:relative}
     .hero-inner{position:relative;z-index:2}
-    .wordmark{font-size:clamp(56px,13vw,132px);font-weight:800;line-height:.95;letter-spacing:-.02em;color:var(--accent);text-shadow:0 0 34px var(--glow);filter:url(#liquid);cursor:crosshair}
+    /* spotlight wordmark: gradient sampled through the letters, follows cursor */
+    .wordmark{font-size:clamp(56px,13vw,132px);font-weight:800;line-height:.95;letter-spacing:-.02em;color:var(--accent);cursor:crosshair;
+      text-shadow:0 0 32px rgba(249,237,78,.38),0 0 12px rgba(249,237,78,.28)}
+    @supports ((-webkit-background-clip:text) or (background-clip:text)){
+      .wordmark{
+        background:radial-gradient(circle 150px at var(--x,50%) var(--y,50%), #fffbe6 0%, #f9ed4e 34%, #cbbf3e 70%, #8f8524 100%);
+        -webkit-background-clip:text;background-clip:text;
+        -webkit-text-fill-color:transparent;color:transparent;
+      }
+    }
     .hero .sub{color:var(--ink);font-size:clamp(15px,2.4vw,19px);max-width:440px;margin:20px auto 0;text-shadow:0 1px 14px rgba(0,0,0,.7)}
 
     .pill{margin-top:28px;display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border:1px solid var(--accent);border-radius:999px;font-size:14px;color:var(--accent);background:rgba(10,10,10,.35);animation:pillGlow 2.4s ease-in-out infinite;will-change:transform}
@@ -53,18 +56,15 @@
     .scrollcue span:last-child{animation:bob 1.8s ease-in-out infinite}
     @keyframes bob{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(5px);opacity:1}}
 
-    /* sections */
     .band{padding:100px 0;border-top:1px solid var(--line)}
     .thesis h2{font-size:clamp(30px,6vw,60px);font-weight:800;letter-spacing:-.02em;line-height:1.05;margin-top:16px;color:var(--accent);text-shadow:0 2px 22px rgba(0,0,0,.55)}
     .thesis p{color:var(--ink);font-size:clamp(16px,2.2vw,19px);max-width:560px;margin-top:20px;text-shadow:0 1px 14px rgba(0,0,0,.7)}
 
     .events{display:flex;flex-direction:column;gap:28px;margin-top:44px}
-    /* tilt cards own their transform; reveal lives on the wrapper — no conflict */
     .event{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:clamp(24px,4vw,42px);transition:border-color .25s ease;will-change:transform}
     .event:hover{border-color:var(--line-strong)}
     .event>*{position:relative;z-index:1}
-    .event::before,.domain::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:0;pointer-events:none;opacity:0;transition:opacity .3s ease;
-      background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%), rgba(249,237,78,.14), transparent 55%)}
+    .event::before,.domain::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:0;pointer-events:none;opacity:0;transition:opacity .3s ease;background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%), rgba(249,237,78,.14), transparent 55%)}
     .event:hover::before,.domain:hover::before{opacity:1}
     .event .kicker{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
     .event .name{font-size:clamp(28px,5vw,46px);font-weight:800;letter-spacing:-.01em;color:var(--accent)}
@@ -72,8 +72,7 @@
     .event .lead{font-size:clamp(18px,2.6vw,24px);font-weight:600;margin:0 0 14px}
     .event p.body{color:var(--muted);max-width:640px;font-size:16px}
     .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-    .tag{font-size:12px;letter-spacing:.4px;color:var(--muted);border:1px solid var(--line-strong);border-radius:999px;padding:6px 13px;cursor:default;
-      transition:color .2s ease,background .2s ease,border-color .2s ease,transform .2s ease}
+    .tag{font-size:12px;letter-spacing:.4px;color:var(--muted);border:1px solid var(--line-strong);border-radius:999px;padding:6px 13px;cursor:default;transition:color .2s ease,background .2s ease,border-color .2s ease,transform .2s ease}
     .tag:hover{color:#0a0a0a;background:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
     .event.flagship{border-color:rgba(249,237,78,.28);box-shadow:0 0 40px rgba(249,237,78,.06)}
     .event.flagship:hover{border-color:rgba(249,237,78,.5)}
@@ -98,16 +97,14 @@
     footer .copy{margin-top:22px;font-size:13px;color:var(--faint);letter-spacing:.4px}
     footer .copy .mark{color:var(--accent);font-weight:700}
 
-    /* reveal (entrance) lives on wrappers only */
     .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
     .reveal.in{opacity:1;transform:none}
-    .events .reveal:nth-child(2) .event{}
     :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
     @media (max-width:640px){.band{padding:72px 0}.domains{grid-template-columns:1fr}.ig-top .handle{display:none}}
     @media (prefers-reduced-motion:reduce){
       *{animation:none!important}html{scroll-behavior:auto}
       .reveal{opacity:1;transform:none;transition:none}
-      .page-bg{background-image:none}.wordmark{filter:none}.masthead-img{animation:none}
+      .page-bg{background-image:none}.masthead-img{animation:none}
     }
   </style>
 </head>
@@ -116,13 +113,6 @@
   <div class="progress"></div>
   <div class="page-bg"></div>
   <div class="page-tint"></div>
-
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <filter id="liquid" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
-      <feTurbulence id="turb" type="fractalNoise" baseFrequency="0.012 0.016" numOctaves="2" seed="2" result="n"/>
-      <feDisplacementMap id="disp" in="SourceGraphic" in2="n" scale="0" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-  </svg>
 
   <a class="ig-top" href="https://www.instagram.com/niche_imnu" target="_blank" rel="noopener" aria-label="NiCHE on Instagram">
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -141,7 +131,7 @@
     <div class="hero-inner">
       <h1 class="wordmark">NiCHE</h1>
       <p class="sub">Recruitment 2026 — where ideas become brands.</p>
-      <span class="pill magnet"><span class="dot"></span> Applicant portal · coming soon</span>
+      <span class="pill run"><span class="dot"></span> Applicant portal · coming soon</span>
     </div>
     <a class="scrollcue" href="#events" aria-label="Scroll to what we build">
       <span>What we build</span><span>&#8595;</span>
@@ -192,7 +182,7 @@
         <div class="domain tilt"><h3>D&eacute;cor</h3><p>Turning plain venues into the theme, hands-on, on the ground.</p></div>
         <div class="domain tilt"><h3>Logistics &amp; Sponsorship</h3><p>Partnerships, budgets and the admin that makes it all actually run.</p></div>
       </div>
-      <span class="pill magnet"><span class="dot"></span> Applicant portal &middot; coming soon</span>
+      <span class="pill run"><span class="dot"></span> Applicant portal &middot; coming soon</span>
     </div>
   </section>
 
@@ -213,92 +203,79 @@
 
   <script>
   (function(){
-    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var canHover = matchMedia('(hover: hover)').matches;
+    var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var canHover=matchMedia('(hover: hover)').matches;
 
-    /* staggered scroll reveal */
-    var items = document.querySelectorAll('.reveal');
-    if(reduce || !('IntersectionObserver' in window)){
-      items.forEach(function(el){el.classList.add('in')});
-    } else {
-      var io = new IntersectionObserver(function(es){
-        es.forEach(function(e,i){
-          if(e.isIntersecting){
-            var sibs = [].slice.call(e.target.parentNode.children).filter(function(c){return c.classList.contains('reveal')});
-            var idx = sibs.indexOf(e.target);
-            e.target.style.transitionDelay = (Math.max(0,idx)*0.09)+'s';
-            e.target.classList.add('in'); io.unobserve(e.target);
-          }
-        });
+    /* staggered reveal */
+    var items=document.querySelectorAll('.reveal');
+    if(reduce || !('IntersectionObserver' in window)){ items.forEach(function(el){el.classList.add('in')}); }
+    else{
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){
+        if(e.isIntersecting){
+          var sibs=[].slice.call(e.target.parentNode.children).filter(function(c){return c.classList.contains('reveal')});
+          e.target.style.transitionDelay=(Math.max(0,sibs.indexOf(e.target))*0.09)+'s';
+          e.target.classList.add('in'); io.unobserve(e.target);
+        }});
       },{threshold:0.14});
       items.forEach(function(el){io.observe(el)});
     }
 
-    /* smooth 3D tilt + cursor glare (rAF eased) */
+    /* smooth tilt + glare */
     if(!reduce && canHover){
       document.querySelectorAll('.tilt').forEach(function(card){
-        var MAX=8, tX=0,tY=0,cX=0,cY=0,tS=1,cS=1,raf=null;
+        var MAX=8,tX=0,tY=0,cX=0,cY=0,tS=1,cS=1,raf=null;
         function tick(){
-          cX+=(tX-cX)*0.15; cY+=(tY-cY)*0.15; cS+=(tS-cS)*0.15;
+          cX+=(tX-cX)*0.15;cY+=(tY-cY)*0.15;cS+=(tS-cS)*0.15;
           card.style.transform='perspective(800px) rotateX('+(-cY).toFixed(2)+'deg) rotateY('+cX.toFixed(2)+'deg) scale('+cS.toFixed(3)+')';
-          if(Math.abs(tX-cX)<0.02 && Math.abs(tY-cY)<0.02 && Math.abs(tS-cS)<0.002 && tS===1){
-            card.style.transform=''; card.style.willChange=''; raf=null;
-          } else raf=requestAnimationFrame(tick);
+          if(Math.abs(tX-cX)<0.02&&Math.abs(tY-cY)<0.02&&Math.abs(tS-cS)<0.002&&tS===1){card.style.transform='';card.style.willChange='';raf=null;}
+          else raf=requestAnimationFrame(tick);
         }
-        function start(){ if(raf===null){ card.style.willChange='transform'; raf=requestAnimationFrame(tick);} }
-        card.addEventListener('mousemove', function(e){
-          var r=card.getBoundingClientRect();
-          var px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
-          tX=(px-0.5)*MAX; tY=(py-0.5)*MAX; tS=1.02;
-          card.style.setProperty('--mx',(px*100).toFixed(1)+'%');
-          card.style.setProperty('--my',(py*100).toFixed(1)+'%');
+        function start(){if(raf===null){card.style.willChange='transform';raf=requestAnimationFrame(tick);}}
+        card.addEventListener('mousemove',function(e){
+          var r=card.getBoundingClientRect(),px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;
+          tX=(px-0.5)*MAX;tY=(py-0.5)*MAX;tS=1.02;
+          card.style.setProperty('--mx',(px*100).toFixed(1)+'%');card.style.setProperty('--my',(py*100).toFixed(1)+'%');
           start();
         });
-        card.addEventListener('mouseleave', function(){ tX=0;tY=0;tS=1; start(); });
+        card.addEventListener('mouseleave',function(){tX=0;tY=0;tS=1;start();});
       });
     }
 
-    /* magnetic CTA pills */
+    /* SPOTLIGHT wordmark — gradient center follows the cursor */
+    var mark=document.querySelector('.wordmark');
+    if(mark){
+      addEventListener('mousemove',function(e){
+        var r=mark.getBoundingClientRect();
+        mark.style.setProperty('--x',(e.clientX-r.left).toFixed(0)+'px');
+        mark.style.setProperty('--y',(e.clientY-r.top).toFixed(0)+'px');
+      },{passive:true});
+    }
+
+    /* RUNAWAY pills — flee the cursor, clamped to a bounded box (desktop only) */
     if(!reduce && canHover){
-      var pills=[].slice.call(document.querySelectorAll('.magnet'));
-      var st=pills.map(function(){return {x:0,y:0,tx:0,ty:0}});
-      addEventListener('mousemove', function(e){
-        pills.forEach(function(pill,i){
-          var r=pill.getBoundingClientRect(), cx=r.left+r.width/2, cy=r.top+r.height/2;
-          var dx=e.clientX-cx, dy=e.clientY-cy, d=Math.hypot(dx,dy), R=130;
-          if(d<R){ var f=(1-d/R)*0.35; st[i].tx=dx*f; st[i].ty=dy*f; } else { st[i].tx=0; st[i].ty=0; }
-        });
-      }, {passive:true});
+      var runs=[].slice.call(document.querySelectorAll('.pill.run'));
+      var st=runs.map(function(){return {x:0,y:0,tx:0,ty:0}});
+      var mx=-9999,my=-9999;
+      addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;},{passive:true});
       (function loop(){
-        pills.forEach(function(pill,i){
-          var s=st[i]; s.x+=(s.tx-s.x)*0.15; s.y+=(s.ty-s.y)*0.15;
-          pill.style.transform='translate('+s.x.toFixed(2)+'px,'+s.y.toFixed(2)+'px)';
+        runs.forEach(function(pill,i){
+          var r=pill.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+          var dx=cx-mx,dy=cy-my,d=Math.hypot(dx,dy),R=150,s=st[i];
+          var maxX=Math.min(200,innerWidth*0.34),maxY=52;
+          if(d<R){var f=(1-d/R);s.tx=(dx/(d||1))*f*maxX*1.25;s.ty=(dy/(d||1))*f*maxY*1.25;}
+          else{s.tx=0;s.ty=0;}
+          s.tx=Math.max(-maxX,Math.min(maxX,s.tx));s.ty=Math.max(-maxY,Math.min(maxY,s.ty));
+          s.x+=(s.tx-s.x)*0.2;s.y+=(s.ty-s.y)*0.2;
+          pill.style.transform='translate('+s.x.toFixed(1)+'px,'+s.y.toFixed(1)+'px)';
         });
         requestAnimationFrame(loop);
       })();
     }
 
     /* scroll progress */
-    var bar=document.querySelector('.progress'), tk=false;
-    function upd(){ var h=document.documentElement.scrollHeight-innerHeight; bar.style.transform='scaleX('+(h>0?(scrollY/h):0).toFixed(4)+')'; tk=false; }
-    if(bar){ addEventListener('scroll',function(){ if(!tk){requestAnimationFrame(upd);tk=true;} },{passive:true}); upd(); }
-
-    /* liquid wordmark */
-    if(!reduce){
-      var turb=document.getElementById('turb'), disp=document.getElementById('disp'), mark=document.querySelector('.wordmark');
-      if(turb&&disp&&mark){
-        var scale=1.5,target=1.5,seed=2,lx=0,ly=0,speed=0,near=0;
-        function move(e){
-          var p=('touches'in e&&e.touches[0])?e.touches[0]:e, r=mark.getBoundingClientRect();
-          var dx=p.clientX-lx,dy=p.clientY-ly; speed=Math.min(1,Math.hypot(dx,dy)/45); lx=p.clientX; ly=p.clientY;
-          var nx=Math.max(r.left,Math.min(p.clientX,r.right)), ny=Math.max(r.top,Math.min(p.clientY,r.bottom));
-          near=Math.max(0,1-Math.hypot(p.clientX-nx,p.clientY-ny)/140); target=1.5+near*(11+speed*10);
-        }
-        addEventListener('mousemove',move,{passive:true}); addEventListener('touchmove',move,{passive:true});
-        (function loop(){ scale+=(target-scale)*0.12; seed+=0.02+near*0.12+speed*0.10; speed*=0.9; near*=0.96;
-          disp.setAttribute('scale',scale.toFixed(2)); turb.setAttribute('seed',(seed%100).toFixed(2)); requestAnimationFrame(loop); })();
-      }
-    }
+    var bar=document.querySelector('.progress'),tk=false;
+    function upd(){var h=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?(scrollY/h):0).toFixed(4)+')';tk=false;}
+    if(bar){addEventListener('scroll',function(){if(!tk){requestAnimationFrame(upd);tk=true;}},{passive:true});upd();}
   })();
   </script>
 </body>
