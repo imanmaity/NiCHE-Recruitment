@@ -60,6 +60,10 @@
     .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:dotPulse 1.6s ease-in-out infinite}
     @keyframes pillGlow{0%,100%{box-shadow:0 0 10px rgba(249,237,78,.30),inset 0 0 6px rgba(249,237,78,.10)}50%{box-shadow:0 0 22px rgba(249,237,78,.60),inset 0 0 10px rgba(249,237,78,.20)}}
     @keyframes dotPulse{0%,100%{transform:scale(1);box-shadow:0 0 6px var(--accent),0 0 10px var(--accent)}50%{transform:scale(1.35);box-shadow:0 0 12px var(--accent),0 0 22px var(--accent)}}
+    .pill.closed{border-color:#ff4d4d;color:#ff5a5a;background:rgba(28,4,4,.45);font-weight:700;letter-spacing:.4px;animation:pillGlowRed 2.4s ease-in-out infinite}
+    .pill.closed .dot{background:#ff4d4d;animation:dotPulseRed 1.6s ease-in-out infinite}
+    @keyframes pillGlowRed{0%,100%{box-shadow:0 0 10px rgba(255,77,77,.30),inset 0 0 6px rgba(255,77,77,.12)}50%{box-shadow:0 0 22px rgba(255,77,77,.60),inset 0 0 10px rgba(255,77,77,.22)}}
+    @keyframes dotPulseRed{0%,100%{transform:scale(1);box-shadow:0 0 6px #ff4d4d,0 0 10px #ff4d4d}50%{transform:scale(1.35);box-shadow:0 0 12px #ff4d4d,0 0 22px #ff4d4d}}
 
     /* sticky nav — hidden on the hero, slides in after you scroll past it */
     .nav{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;gap:26px;padding:12px 22px;
@@ -220,7 +224,7 @@
     <div class="hero-inner">
       <h1 class="wordmark">NiCHE</h1>
       <p class="sub">Recruitment 2026 — where ideas become brands.</p>
-      <span class="pill run"><span class="dot"></span> Applicant portal · coming soon</span>
+      <span class="pill closed"><span class="dot"></span> Applicant portal · Closed</span>
     </div>
     <a class="scrollcue" href="#events" aria-label="Scroll to what we build">
       <span>What we build</span><span>&#8595;</span>
@@ -298,7 +302,7 @@
           <div class="face back"><div class="back-line">You'll close the sponsors, hold the budget, and make it all run on time.</div></div>
         </div></div>
       </div>
-      <span class="pill run"><span class="dot"></span> Applicant portal &middot; coming soon</span>
+      <span class="pill closed"><span class="dot"></span> Applicant portal · Closed</span>
     </div>
   </section>
 
